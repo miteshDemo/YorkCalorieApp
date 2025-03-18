@@ -1,20 +1,17 @@
-import './App.css'
-import Home from './Components/Home'
-import History from './Components/History';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import "./App.css";
+import Home from "./Components/Home";
+import History from "./Components/History";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
-  
   return (
-    <div>
-      <Router>
-      <Home />
+    <Router>
       <Routes>
-      <Route path="/history" element={<History />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/history" element={<History />} />
       </Routes>
     </Router>
-    </div>
-  )
+  );
 }
 
-export default App
+export default App;

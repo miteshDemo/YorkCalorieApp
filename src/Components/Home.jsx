@@ -1,66 +1,127 @@
-import React from "react";
-import { NavLink } from 'react-router-dom'
+import React, { useState } from "react";
+import { AppBar, Toolbar, Typography, Button, Box, Container, Paper, IconButton, Avatar, CircularProgress } from "@mui/material";
+import { NavLink } from "react-router-dom";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { motion } from "framer-motion";
 
-const uploadImage = () => {
+const UploadImage = () => {
+
+  const [image, setImage] = useState("");
+
+  const [loading, setLoading] = useState(false);
+
+  const handleImageUpload = (event) => {
+
+    const file = event.target.files[0];
+
+    if (file) {
+      setLoading(true);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+        setLoading(false);
+      };
+      reader.readAsDataURL(file);
+    }
+
+  };
 
   return (
 
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center" >
+    <Box sx={{ minHeight: "100vh", bgcolor: "#f5f5f5", display: "flex", flexDirection: "column", alignItems: "center" }}>
+
+      <AppBar position="static" sx={{ bgcolor: "green" }}>
+
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+
+          <Typography variant="h6" sx={{ fontFamily: "serif", fontWeight: "bold" }}>York.IE Calories</Typography>
+
+          <Box>
+
+            <Button component={NavLink} to="/" color="inherit" sx={{ fontWeight: "bold", fontFamily: "serif" }}>Home</Button>
+
+            <Button color="inherit" sx={{ fontWeight: "bold", fontFamily: "serif" }}>Profile</Button>
+
+            <Button component={NavLink} to="/history" color="inherit" sx={{ fontWeight: "bold", fontFamily: "serif" }}>History</Button>
+
+          </Box>
+
+          <IconButton>
+
+            <Avatar sx={{ bgcolor: "gray" }} />
+
+          </IconButton>
+
+        </Toolbar>
+
+      </AppBar>
       
-      <nav className="w-full bg-green-600 text-white p-4 flex justify-between items-center">
+      <Container sx={{ mt: 4, display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center", justifyContent: "center" }}>
 
-        <h1 className="text-xl font-bold font-serif text-white">York.IE Calories</h1>
+        <Paper elevation={3} sx={{ p: 4, textAlign: "center", width: { xs: "100%", md: "50%" }, border: "2px dashed gray" }}>
 
-        <div className="flex space-x-4">
+          <Typography variant="h6" fontWeight="bold" gutterBottom>
 
-          <NavLink to="/" className="hover:underline text-1xl font-serif font-bold">Home</NavLink>
+            Upload Your Meal Snap & Uncover the Calories
 
-          <a href="#" className="hover:underline text-1xl font-serif font-bold">Profile</a>
+          </Typography>
+          
+          <Box sx={{ border: "1px solid gray", borderRadius: "4px", p: 2, mb: 2 }}>
 
-          <NavLink to="/history" className="hover:underline text-1xl font-serif font-bold">History</NavLink>
+            <Typography color="gray">Drag or upload your meal pic here</Typography>
 
-        </div>
+            <Button
+              variant="contained"
+              component="label"
+              startIcon={<CloudUploadIcon />}
+              sx={{ mt: 2, bgcolor: "black", color: "white" }}
+            >
 
-        <div className="w-10 h-10 rounded-full bg-gray-300">
+              Upload File
 
-        </div>
+              <input type="file" hidden onChange={handleImageUpload} />
 
-      </nav>
+            </Button>
 
-      <div className="flex flex-col md:flex-row items-center justify-center mt-10 w-11/12 md:w-3/4 lg:w-2/3">
-       
-        <div className="bg-white p-6 rounded-lg shadow-md w-full md:w-1/2 text-center border-dashed border-2 border-gray-300">
+          </Box>
+          
+          <Typography variant="body2" color="gray">
 
-          <p className="text-lg font-semibold mb-2">Upload Your Meal Snap & Uncover the Calories</p>
+            Format supported: JPEG, SVG, PNG &nbsp; <strong>Max file size:</strong> 5MB
 
-          <div className="border border-gray-400 rounded-md p-4 mb-4">
+          </Typography>
 
-            <p className="text-gray-500">Drag or upload your meal pic here</p>
+        </Paper>
+        
+        <Box sx={{ mt: { xs: 3, md: 0 }, ml: { md: 3 }, width: { xs: "100%", md: "50%" }, textAlign: "center" }}>
 
-            <button className="mt-2 bg-black text-white px-4 py-2 rounded">Upload File</button>
+          {loading ? (
+            <CircularProgress />
+          ) : image ? (
 
-          </div>
+            <motion.img
 
-          <p className="text-sm text-gray-500">Format supported: JPEG, SVG, PNG &nbsp; <b>Max file size:</b> 5MB</p>
+              src={image}
+              alt="Uploaded meal"
+              style={{ width: "100%", borderRadius: "8px", boxShadow: "2px 2px 10px rgba(0,0,0,0.1)" }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
 
-        </div>
+            />
 
-       
-        <div className="mt-6 md:mt-0 md:ml-6 w-full md:w-1/2">
+          ) : (
+            
+            <Typography color="gray">No image uploaded</Typography>
 
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT59FCMlRaC7oij_49QzuDW_gnRRMsYo2vj6g&s"
-            alt="Uploaded meal"
-            className="rounded-lg shadow-md w-full"
-          />
+          )}
 
-        </div>
+        </Box>
 
-      </div>
+      </Container>
 
-    </div>
-
+    </Box>
   );
 };
 
-export default uploadImage;
+export default UploadImage;
