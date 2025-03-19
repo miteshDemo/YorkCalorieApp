@@ -17,6 +17,7 @@ const History = () => {
 
   return (
 
+
     <Box className="min-h-screen bg-gray-100 flex flex-col items-center">
 
       <AppBar position="static" sx={{ bgcolor: "green" }}>
