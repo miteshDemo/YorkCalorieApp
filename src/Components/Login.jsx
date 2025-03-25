@@ -1,180 +1,99 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Button, TextField, Checkbox, FormControlLabel, Box, Divider, Link, Grid, IconButton } from "@mui/material";
-import { Formik, Form, Field } from "formik";
+import { AppBar, Toolbar, Typography, Button, TextField, Box, Container, Paper } from "@mui/material";
+import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";  // Import useNavigate
 
-const validationSchema = Yup.object({
+const LoginPage = () => {
+  const navigate = useNavigate();  // Initialize navigation hook
 
-  email: Yup.string().email("Invalid email format").required("Email is required"),
-
-  password: Yup.string()
-
-    .min(8, "Password must be at least 8 characters")
-
-    .required("Password is required"),
-
-});
-
-const Login = () => {
+  const formik = useFormik({
+    initialValues: {
+      fullName: "",
+      email: "",
+    },
+    validationSchema: Yup.object({
+      fullName: Yup.string().required("Required"),
+      email: Yup.string().email("Invalid email address").required("Required"),
+    }),
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
 
   return (
-
-    <div>
-
-      <AppBar
-        position="static"
-        sx={{ fontFamily: "serif", fontWeight: "bold", backgroundColor: "green" }}
-      >
-
-        <Toolbar className="flex justify-between">
-
+    <>
+      <AppBar position="static" sx={{ fontFamily: "serif", fontWeight: "bold", backgroundColor: "green" }}>
+        <Toolbar>
           <Typography variant="h6" sx={{ fontFamily: "serif", fontWeight: "bold" }}>
             YORK.IE Calorie
           </Typography>
-
         </Toolbar>
-
       </AppBar>
 
-      <div
-
-        className="mt-10 flex min-h-screen items-center justify-center p-4"
-        style={{
-          backgroundImage: "url('https://t4.ftcdn.net/jpg/03/20/39/89/360_F_320398931_CO8r6ymeSFqeoY1cE6P8dbSGRYiAYj4a.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backdropFilter: "blur(10px)",
-          WebkitBackdropFilter: "blur(10px)",
-        }}
-
+      <div 
+        className="flex items-center justify-start min-h-screen bg-cover bg-center" 
+        style={{ backgroundImage: "url('https://static.vecteezy.com/system/resources/thumbnails/034/494/532/small_2x/flat-lay-vegetables-on-white-background-food-and-diet-concept-ai-generated-free-photo.jpg')" }}
       >
-        <div className="flex w-full max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
-
-          <div className="w-full p-8 m-4">
-
-            <Box textAlign="center" mb={3}>
-
-              <Typography variant="h4" sx={{ fontFamily: "serif", fontWeight: "bold", color: "green" }}>
-                YORK.IE Calories
-              </Typography>
-
-              <Typography variant="h5" className="font-serif font-bold mt-2">
-                Welcome to York.IE Calories 👋
-              </Typography>
-
-              <Typography variant="h6" className="text-gray-600 font-serif font-bold">
-                Please sign in to your account and start exploring our services.
-              </Typography>
-
-            </Box>
-
-            <Formik
-
-              initialValues={{ email: "", password: "", remember: false }}
-              validationSchema={validationSchema}
-              onSubmit={(values) => console.log("Form values:", values)}
-
-            >
-
-              {({ errors, touched, handleChange, handleBlur }) => (
-
-                <Form>
-
-                  <Field
-                    as={TextField}
-                    fullWidth
-                    label="Email or Username"
+        <Container maxWidth="lg">
+          <Box className="w-1/2">
+            <Typography variant="h3" sx={{ fontFamily: "serif", fontWeight: "bold", color: "green", fontStyle: "italic" }}>
+              Love Food but Worried About Calories?
+            </Typography>
+            <br />
+            <Typography variant="h5" sx={{ fontFamily: "serif", fontWeight: "bold", color: "black" }}>
+              We’re here to Help <span className="ml-2">😊</span>
+            </Typography>
+            <br />
+            <Paper elevation={3} className="w-full p-6 rounded-lg shadow-lg bg-white">
+              <form onSubmit={formik.handleSubmit}>
+                <Box className="flex space-x-4 mb-4">
+                  <TextField 
+                    fullWidth 
+                    label="Enter First & Last Name" 
+                    variant="outlined" 
+                    size="medium" 
+                    name="fullName"
+                    value={formik.values.fullName}
+                    onChange={formik.handleChange}
+                    error={formik.touched.fullName && Boolean(formik.errors.fullName)}
+                    helperText={formik.touched.fullName && formik.errors.fullName}
+                  />
+                  <TextField 
+                    fullWidth 
+                    label="Enter Valid Email" 
+                    variant="outlined" 
+                    size="medium" 
                     name="email"
-                    variant="outlined"
-                    size="small"
-                    margin="normal"
-                    error={touched.email && Boolean(errors.email)}
-                    helperText={touched.email && errors.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    error={formik.touched.email && Boolean(formik.errors.email)}
+                    helperText={formik.touched.email && formik.errors.email}
                   />
+                </Box>
+                
+               
+                <Typography variant="h6" className="mt-2">
+                  If You Haven't Account ?
+                  <span className="text-blue-600 cursor-pointer" onClick={() => navigate("/registration")}> Sign In</span>
+                </Typography>
 
-
-                  <Field
-                    as={TextField}
-                    fullWidth
-                    label="Password"
-                    name="password"
-                    type="password"
-                    variant="outlined"
-                    size="small"
-                    margin="normal"
-                    error={touched.password && Boolean(errors.password)}
-                    helperText={touched.password && errors.password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-
-
-                  <Box display="flex" justifyContent="space-between" alignItems="center" mt={1} mb={2}>
-
-                    <Field as={FormControlLabel} control={<Checkbox />} name="remember" label="Remember me" />
-
-                    <Link href="#" underline="hover" className="font-serif font-bold text-green-600">
-                      Forgot password?
-                    </Link>
-
-                  </Box>
-
-                  <Button type="submit" fullWidth variant="contained" sx={{ fontFamily: "serif", fontWeight:"bold" }} className="bg-green-600 text-white  hover:bg-green-700">
-                    Login
-                  </Button>
-
-                </Form>
-
-              )}
-
-            </Formik>
-
-            <Box className="flex items-center my-3">
-
-              <Divider className="flex-grow" />
-
-              <Typography className="mx-2 text-gray-600 text-sm">or</Typography>
-
-              <Divider className="flex-grow" />
-
-            </Box>
-
-            <Grid container justifyContent="center" spacing={2}>
-
-              {[
-                { src: "https://cdn-icons-png.flaticon.com/512/145/145802.png", alt: "Facebook" },
-                { src: "https://cdn-icons-png.flaticon.com/512/145/145812.png", alt: "Twitter" },
-                { src: "https://cdn-icons-png.flaticon.com/512/733/733553.png", alt: "GitHub" },
-                { src: "https://cdn-icons-png.flaticon.com/512/281/281764.png", alt: "Google" },
-
-              ].map((icon, index) => (
-
-                <Grid item key={index}>
-
-                  <IconButton href="#">
-
-                    <img src={icon.src} width={24} alt={icon.alt} />
-
-                  </IconButton>
-
-                </Grid>
-
-              ))}
-
-            </Grid>
-
-          </div>
-
-        </div>
-
+                <br />
+                <Button 
+                  variant="contained" 
+                  fullWidth 
+                  sx={{ fontFamily: "serif", fontSize: "20px", fontWeight: "bold" }} 
+                  type="submit"
+                >
+                  Sign Up
+                </Button>
+              </form>
+            </Paper>
+          </Box>
+        </Container>
       </div>
-
-    </div>
-
+    </>
   );
-  
 };
 
-export default Login;
+export default LoginPage;

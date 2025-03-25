@@ -34,7 +34,7 @@ function App() {
 
     setLoading(true);
 
-    const apiUrl = "API_URL"; 
+    const apiUrl = "https://69lgz3xfja.execute-api.us-west-1.amazonaws.com  "; 
 
     const apiKey = "API_KEY";  
 

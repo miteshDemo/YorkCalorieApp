@@ -5,7 +5,6 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { motion } from "framer-motion";
 import { useDropzone } from "react-dropzone";
 
-
 const UploadImage = () => {
 
   const [image, setImage] = useState("");
@@ -35,6 +34,7 @@ const UploadImage = () => {
       };
 
       reader.readAsDataURL(file);
+
     }
 
   }, []);
@@ -50,41 +50,44 @@ const UploadImage = () => {
   });
 
   const handleReupload = () => {
-
     setImage("");
-
   };
 
   const toggleDarkMode = () => {
-
     setDarkMode((prevMode) => !prevMode);
-
   };
 
   const toggleDrawer = () => {
-
     setDrawerOpen(!drawerOpen);
-
   };
 
   return (
-    
-    <Box sx={{ minHeight: "100vh", bgcolor: darkMode ? "#121212" : "#f5f5f5", color: darkMode ? "#fff" : "#000", display: "flex", flexDirection: "column", alignItems: "center" }}>
 
+    <Box
+
+      sx={{
+        minHeight: "100vh",
+        backgroundImage: `url(${darkMode ? "https://insider.fitt.co/wp-content/uploads/2024/12/PressRelease_2400x1400-2.jpg" : "https://insider.fitt.co/wp-content/uploads/2024/12/PressRelease_2400x1400-2.jpg"})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        bgcolor: darkMode ? "#121212" : "#f5f5f5",
+        color: darkMode ? "#fff" : "#000",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+
+    >
       <AppBar position="static" sx={{ bgcolor: darkMode ? "#333" : "green" }}>
 
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
 
           <Typography variant="h6" sx={{ fontFamily: "serif", fontWeight: "bold" }}>YORK.IE Calories</Typography>
-    
+
           <Box>
-
             <Button component={NavLink} to="/" color="inherit" sx={{ fontWeight: "bold", fontFamily: "serif" }}>Home</Button>
-
             <Button color="inherit" sx={{ fontWeight: "bold", fontFamily: "serif" }}>Profile</Button>
-
             <Button component={NavLink} to="/history" color="inherit" sx={{ fontWeight: "bold", fontFamily: "serif" }}>History</Button>
-
           </Box>
 
           <IconButton onClick={toggleDrawer}><Avatar sx={{ bgcolor: "gray" }} /></IconButton>
@@ -99,14 +102,10 @@ const UploadImage = () => {
 
         <Box sx={{ width: 250 }} role="presentation">
 
-          <List>
-
+          <List >
             <ListItem button component={NavLink} to="/" onClick={toggleDrawer}><ListItemText primary="Settings" /></ListItem>
-
             <ListItem button onClick={toggleDrawer}><ListItemText primary="Logout" /></ListItem>
-
             <ListItem button onClick={toggleDrawer}><ListItemText primary="Set Goals" /></ListItem>
-
           </List>
 
         </Box>
@@ -117,19 +116,19 @@ const UploadImage = () => {
 
         <Paper elevation={3} sx={{ p: 4, textAlign: "center", width: { xs: "100%", md: "50%" }, border: "2px dashed gray", bgcolor: darkMode ? "#333" : "white", color: darkMode ? "#fff" : "#000" }}>
 
-          <Typography variant="h6" fontWeight="bold" fontFamily="serif" gutterBottom>Upload Your Meal Snap & Uncover the Calories</Typography>
+          <Typography variant="h5" fontWeight="bold" fontStyle="italic" fontFamily="serif" gutterBottom>Upload Your Meal Snap & Uncover the Calories</Typography>
 
           <Box {...getRootProps()} sx={{ border: "1px solid gray", borderRadius: "4px", p: 2, mb: 2, cursor: "pointer" }}>
 
             <input {...getInputProps()} />
 
-            <Typography color="gray">Drag & Drop or Click to Upload</Typography>
+            <Typography color="gray" sx={{ fontFamily : "serif", fontWeight : "bold"}}>Drag & Drop or Click to Upload</Typography>
 
             <Button variant="contained" startIcon={<CloudUploadIcon />} sx={{ mt: 2, bgcolor: darkMode ? "white" : "black", color: darkMode ? "black" : "white" }}>Upload File</Button>
 
           </Box>
 
-          <Typography variant="body2" color="gray">Format supported: JPEG, SVG, PNG &nbsp; <strong>Max file size:</strong> 5MB</Typography>
+          <Typography variant="body2" color="gray" sx={{ fontFamily : "serif", fontWeight : "bold"}} >Format supported: JPEG, SVG, PNG &nbsp; <strong>Max file size:</strong> 5MB</Typography>
 
         </Paper>
 
@@ -151,7 +150,7 @@ const UploadImage = () => {
 
           ) : (
 
-            <Typography color="gray">No image uploaded</Typography>
+            <Typography color="white" sx={{ fontFamily : "serif", fontWeight : "bold"}}>No image uploaded</Typography>
 
           )}
 
@@ -162,7 +161,7 @@ const UploadImage = () => {
     </Box>
 
   );
-  
+
 };
 
 export default UploadImage;
