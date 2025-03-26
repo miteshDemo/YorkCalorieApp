@@ -5,7 +5,6 @@ import Login from "./Components/Login";
 import ForgetPass from './Components/ForgetPass'
 import StartPage from './Components/StartPage';
 import FoodInformation from "./Components/FoodInformation";
-import OTP from "./Components/OTP";
 import Registration from "./Components/Registration";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -16,21 +15,17 @@ function App() {
 
     <Router>
 
-
-      {/* <ForgetPass />  */}
-
       {/* <FoodInformation /> */}
 
       {/* <Login /> */}
 
-      {/* <OTP /> */}
-
       <Routes>
-        <Route path="/" element={<StartPage />} />
-        <Route path="/Login" element={<Login />}/>
-        <Route path="/Register" element={<Registration />} />
+        {/* <Route path="/" element={<StartPage />} /> */}
+        {/* <Route path="/Login" element={<Login />}/> */}
+        {/* <Route path="/registration" element={<Registration />} /> */}
         <Route path="/Home" element={<Home />}/>
         {/* <Route path="/history" element={<History />} /> */}
+        {/* <Route path="/ForgetPass" element={<ForgetPass />}/> */}
       </Routes>
     </Router>
   );

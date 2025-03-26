@@ -2,10 +2,10 @@ import React from "react";
 import { AppBar, Toolbar, Typography, Button, TextField, Box, Container, Paper } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";  // Import useNavigate
+import { useNavigate } from "react-router-dom";  
 
 const LoginPage = () => {
-  const navigate = useNavigate();  // Initialize navigation hook
+  const navigate = useNavigate();  
 
   const formik = useFormik({
     initialValues: {
@@ -72,12 +72,27 @@ const LoginPage = () => {
                   />
                 </Box>
                 
-               
-                <Typography variant="h6" className="mt-2">
-                  If You Haven't Account ?
-                  <span className="text-blue-600 cursor-pointer" onClick={() => navigate("/registration")}> Sign In</span>
+                <Typography variant="h6" sx={{ fontFamily: "serif", fontWeight: "bold" }}>
+                  Already have an account?
+                  <span 
+                    className="text-blue-600 cursor-pointer" 
+                    onClick={() => navigate("/Registration")}
+                    style={{ color: "blue", cursor: "pointer", marginLeft: "5px" }}
+                  >
+                    Please Register
+                  </span>
                 </Typography>
-
+                
+                <Typography variant="h6" sx={{ fontFamily: "serif", fontWeight: "bold", marginTop: "10px" }}>
+                  <span 
+                    className="text-red-600 cursor-pointer" 
+                    onClick={() => navigate("/ForgotPass")}
+                    style={{ color: "red", cursor: "pointer" }}
+                  >
+                    Forgot Password?
+                  </span>
+                </Typography>
+                
                 <br />
                 <Button 
                   variant="contained" 
@@ -85,7 +100,7 @@ const LoginPage = () => {
                   sx={{ fontFamily: "serif", fontSize: "20px", fontWeight: "bold" }} 
                   type="submit"
                 >
-                  Sign Up
+                  Login
                 </Button>
               </form>
             </Paper>
