@@ -1,21 +1,5 @@
 import React, { useState, useCallback } from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Box,
-  Container,
-  Paper,
-  IconButton,
-  Avatar,
-  CircularProgress,
-  Switch,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-} from "@mui/material";
+import { AppBar, Toolbar, Typography, Button, Box, Container, Paper, IconButton, Avatar, CircularProgress, Switch, Drawer, List, ListItem, ListItemText } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { motion } from "framer-motion";
@@ -72,7 +56,7 @@ const UploadImage = () => {
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>YORK.IE Calories</Typography>
           <Box>
-            <Button component={NavLink} to="/Home" color="inherit">Home</Button>
+            <Button component={NavLink} to="/home" color="inherit">Home</Button>
             <Button component={NavLink} to="/history" color="inherit">History</Button>
           </Box>
           <IconButton onClick={() => setDrawerOpen(true)}><Avatar sx={{ bgcolor: "gray" }} /></IconButton>

@@ -1,27 +1,24 @@
 import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Components/Home";
 import History from "./Components/History";
 import Login from "./Components/Login";
-import ForgetPass from './Components/ForgetPass'
-import StartPage from './Components/StartPage';
+import ForgetPass from "./Components/ForgetPass";
+import StartPage from "./Components/StartPage";
 import FoodInformation from "./Components/FoodInformation";
 import Registration from "./Components/Registration";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
 
 function App() {
-
   return (
-
     <Router>
-
       <Routes>
         <Route path="/" element={<StartPage />} />
-        <Route path="/Login" element={<Login />}/>
+        <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
-        <Route path="/Home" element={<Home />}/>
+        <Route path="/home" element={<Home />} />
         <Route path="/history" element={<History />} />
-        <Route path="/ForgetPass" element={<ForgetPass />}/>
+        <Route path="/forgetpass" element={<ForgetPass />} />
+        <Route path="/foodinfo" element={<FoodInformation />} />
       </Routes>
     </Router>
   );

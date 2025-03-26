@@ -28,7 +28,7 @@ const History = () => {
 
           <Box>
 
-            <Button component={NavLink} to="/" color="inherit" sx={{ fontWeight: "bold", fontFamily: "serif" }}>Home</Button>
+            <Button component={NavLink} to="/home" color="inherit" sx={{ fontWeight: "bold", fontFamily: "serif" }}>Home</Button>
 
           </Box>
 
