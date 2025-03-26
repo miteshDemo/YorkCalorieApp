@@ -15,17 +15,13 @@ function App() {
 
     <Router>
 
-      {/* <FoodInformation /> */}
-
-      {/* <Login /> */}
-
       <Routes>
-        {/* <Route path="/" element={<StartPage />} /> */}
-        {/* <Route path="/Login" element={<Login />}/> */}
-        {/* <Route path="/registration" element={<Registration />} /> */}
+        <Route path="/" element={<StartPage />} />
+        <Route path="/Login" element={<Login />}/>
+        <Route path="/registration" element={<Registration />} />
         <Route path="/Home" element={<Home />}/>
-        {/* <Route path="/history" element={<History />} /> */}
-        {/* <Route path="/ForgetPass" element={<ForgetPass />}/> */}
+        <Route path="/history" element={<History />} />
+        <Route path="/ForgetPass" element={<ForgetPass />}/>
       </Routes>
     </Router>
   );

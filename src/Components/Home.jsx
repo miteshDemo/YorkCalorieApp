@@ -72,7 +72,7 @@ const UploadImage = () => {
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>YORK.IE Calories</Typography>
           <Box>
-            <Button component={NavLink} to="/" color="inherit">Home</Button>
+            <Button component={NavLink} to="/Home" color="inherit">Home</Button>
             <Button component={NavLink} to="/history" color="inherit">History</Button>
           </Box>
           <IconButton onClick={() => setDrawerOpen(true)}><Avatar sx={{ bgcolor: "gray" }} /></IconButton>
